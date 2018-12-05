@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ProjectPicture index{% endblock %}
+
+{% block body %}
+    <h1>ProjectPicture index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Filename</th>
+                <th>Alt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for project_picture in project_pictures %}
+            <tr>
+                <td>{{ project_picture.id }}</td>
+                <td>{{ project_picture.filename }}</td>
+                <td>{{ project_picture.alt }}</td>
+                <td>
+                    <a href="{{ path('project_picture_show', {'id': project_picture.id}) }}">show</a>
+                    <a href="{{ path('project_picture_edit', {'id': project_picture.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('project_picture_new') }}">Create new</a>
+{% endblock %}
